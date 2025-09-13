@@ -9,3 +9,13 @@ HI
 
 {% assign variable_name = "God" %}
 {{ variable_name | upcase | remove: "O" }}
+
+{% capture variable %}
+  <p>value</p>
+{% endcapture %}
+{{ variable | strip_html }}
+
+{% assign array = "one,two,three,four" | split: "," %}
+{% for item in array %}
+  <p>{{ item }}</p>
+{% endfor %}
