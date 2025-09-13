@@ -19,3 +19,35 @@ HI
 {% for item in array %}
   <p>{{ item }}</p>
 {% endfor %}
+
+{% # dataTypes %}
+{% assign string = "This is a string" %}
+{% assign number = 42 %}
+{% assign boolean = true %}
+{% assign array = "apple,banana,cherry" | split: "," %}
+{% assign object = '{"name": "John", "age": 30}' | parse_json %}
+{% assign nil_value = nil %}
+{{ string }}<br>
+{{ number }}<br>
+{{ boolean }}<br>
+{% for fruit in array %}
+  {{ fruit }}<br>
+{% endfor %}
+{{ object.name }} is {{ object.age }} years old.<br>
+{{ nil_value | default: "This is a default value for nil" }}<br>
+
+{% assign products = collections.all.products %}
+{% for product in products %}
+  <h2>{{ product.title }}</h2>
+  <p>Price: {{ product.price | money }}</p>
+  {% if product.compare_at_price > product.price %}
+    <p>On Sale! Was: {{ product.compare_at_price | money }}</p>
+  {% endif %}
+  {% if product.available %}
+    <p>Status: In Stock</p>
+  {% else %}
+    <p>Status: Out of Stock</p>
+  {% endif %}
+{% endfor %}
+
+{% assign current_time = 'now' | date: "%Y-%m-%d %H:%M:%S" %}
